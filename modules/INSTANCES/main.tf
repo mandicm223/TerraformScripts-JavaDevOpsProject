@@ -98,3 +98,20 @@ resource "aws_instance" "EC2-Nexus" {
   
 }
 
+
+# create aws EC2 resource - Sonarqube
+
+resource "aws_instance" "EC2-Sonarqube" {
+  ami = var.machine_image
+  instance_type = var.instance_type_nexus
+  key_name = "OVAJKEYKORISTI"
+  vpc_security_group_ids = [ var.security_group_id ]
+  subnet_id = var.subnet_id
+  associate_public_ip_address = true
+  user_data = file("./modules/INSTANCES/installationScripts/installSonarqube.sh")
+
+  tags = {
+    Name = "EC2-Sonarqube"
+  }
+  
+}
