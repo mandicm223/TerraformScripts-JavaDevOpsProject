@@ -42,5 +42,7 @@
     docker pull sonarqube
     # Start the server by running (run docker container)
     docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+    # Automatically rerun container when exited
+    docker update --restart always sonarqube
     
     
